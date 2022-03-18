@@ -19,3 +19,12 @@ The existing `Properties` panel will set things like `Color Mode` for all select
 Deciding that such tyranny will not stand on my watch, I made a quick extension to allow me to set the outstanding properties of all selected `Image Textures` with one click.
 
 Because that's what heroes do.
+
+<br><br>
+
+<p align="center">
+  <img align="center" src="https://badges.pufler.dev/created/don1138/blender-itp?style=for-the-badge&colorA=222&colorB=48684b" alt="Repo Created">
+  <img align="center" src="https://badges.pufler.dev/updated/don1138/blender-itp?style=for-the-badge&colorA=222&colorB=48684b" alt="Repo Updated">
+</p>
+
+![Alt](https://repobeats.axiom.co/api/embed/c0e3e1855d0f7003c53943d3efcfa0fc8f9d853f.svg "Repobeats analytics image")
