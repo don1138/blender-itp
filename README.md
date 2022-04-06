@@ -12,7 +12,7 @@ This addon creates a panel named **Image Texture Properties** under ``Shader Edi
 
 ## Backstory
 
-I was working on a PBR with six image textures, and had to change the `Projection` to `BOX` six time.
+I was working on a PBR with six image textures, and had to change the `Projection` to `BOX` six times.
 
 The existing `Properties` panel will set things like `Color Mode` for all selected images, but doesn't include the full set of properties listed on the node itself.
 
