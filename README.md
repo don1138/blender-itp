@@ -23,8 +23,8 @@ Because that's what heroes do.
 <br><br>
 
 <p align="center">
-  <img align="center" src="https://badges.pufler.dev/created/don1138/blender-itp?style=for-the-badge&colorA=222&colorB=48684b" alt="Repo Created">
-  <img align="center" src="https://badges.pufler.dev/updated/don1138/blender-itp?style=for-the-badge&colorA=222&colorB=48684b" alt="Repo Updated">
+  <img alt="GitHub latest commit" src="https://img.shields.io/github/last-commit/don1138/blender-itp">
+  <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/don1138/blender-itp">
+  <img alt="Github all releases" src="https://img.shields.io/github/downloads/don1138/blender-itp/total.svg"><br>
+  <img src="https://repobeats.axiom.co/api/embed/c0e3e1855d0f7003c53943d3efcfa0fc8f9d853f.svg" alt="Repobeats analytics image">
 </p>
-
-![Alt](https://repobeats.axiom.co/api/embed/c0e3e1855d0f7003c53943d3efcfa0fc8f9d853f.svg "Repobeats analytics image")
