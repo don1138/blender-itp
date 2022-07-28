@@ -10,6 +10,10 @@ Download the latest ZIP from **Releases**, or `node_image_texture_properties.py`
 
 This addon creates a panel named **Image Texture Properties** under ``Shader Editor > Sidebar > Node``.
 
+## Issues
+
+- If image nodes are inside of a group, the sidebar panel is blank.
+
 ## Backstory
 
 I was working on a PBR with six image textures, and had to change the `Projection` to `BOX` six times.
