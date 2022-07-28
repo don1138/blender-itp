@@ -77,7 +77,8 @@ class RN_PT_NodeITPanel(Panel):
             mytool = scene.blend_val_tool
             row = layout.row()
             node = context.space_data.node_tree.nodes.active
-            while node and node.type == "GROUP": node = node.node_tree.nodes.active
+            while node and node.type == "GROUP":
+              node = node.node_tree.nodes.active
             if node and node.type == 'TEX_IMAGE':
 
                 row = layout.row(align=True)
