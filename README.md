@@ -12,11 +12,11 @@ This addon creates a panel named **Image Texture Properties** under ``Shader Edi
 
 Select one or more Image Textures and the panel looks like this:
 
-![Blender ITP Active](https://github.com/don1138/blender-itp/blob/main/itp-panel.png)
+![Blender ITP Active](https://github.com/don1138/blender-itp/blob/main/imx/itp-panel.png)
 
 If no Image Texture is selected, the panel shows an empty state:
 
-![Blender ITP Null](https://github.com/don1138/blender-itp/blob/main/itp-panel-null.png)
+![Blender ITP Null](https://github.com/don1138/blender-itp/blob/main/imx/itp-panel-null.png)
 
 ## Backstory
 
