@@ -14,6 +14,10 @@ Select one or more Image Textures and the panel looks like this:
 
 ![Blender ITP Active](https://github.com/don1138/blender-itp/blob/main/imx/itp-panel.png)
 
+If `projection` is set to `BOX`, a Blend Value field appears:
+
+![Blender ITP Active Box Blend](https://github.com/don1138/blender-itp/blob/main/imx/itp-panel-box-blend.png)
+
 If no Image Texture is selected, the panel shows an empty state:
 
 ![Blender ITP Null](https://github.com/don1138/blender-itp/blob/main/imx/itp-panel-null.png)
