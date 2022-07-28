@@ -13,6 +13,7 @@ This addon creates a panel named **Image Texture Properties** under ``Shader Edi
 ## Issues
 
 - If image nodes are inside of a group, the sidebar panel is blank.
+- As of Blender 3.2.1, the `BOX` projection `Blend Value` property does not show up in sidebar panel.
 
 ## Backstory
 
