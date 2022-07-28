@@ -19,7 +19,7 @@
 bl_info = {
     "name"       : "ITP (Image Texture Properties)",
     "author"     : "Don Schnitzius",
-    "version"    : (1, 0),
+    "version"    : (1, 1),
     "blender"    : (2, 80, 0),
     "location"   : "Node Editor > Sidebar > Node",
     "description": "Set Properties for Selected Image Nodes",
@@ -30,15 +30,9 @@ bl_info = {
 }
 
 
-"""
-VERSION HISTORY
-
-1.0 – 18/03/22
-    – Create Addon
-"""
-
 import bpy
 from bpy.types import Operator, Panel
+
 
 not_image = "One or more nodes are not Image Textures"
 def ShowMessageBox(message = "", title = "", icon = 'INFO'):
@@ -66,22 +60,24 @@ def whenUpdate( self, context ):
             if node.type == 'TEX_IMAGE':
                 node.projection_blend = self.blend_val
 
+
 class MyProperties(bpy.types.PropertyGroup):
     blend_val : bpy.props.FloatProperty(name = "Blend:", min = 0, max = 1, update = whenUpdate)
 
 class RN_PT_NodeITPanel(Panel):
-    bl_label       = "Image Texture Properties"
     bl_space_type  = "NODE_EDITOR"
     bl_region_type = "UI"
     bl_category    = "Node"
+    bl_label       = "Image Texture Properties"
 
     def draw(self, context):
         if context.active_node is not None:
             layout = self.layout
             scene = context.scene
-            mytool = scene.my_tool
+            mytool = scene.blend_val_tool
             row = layout.row()
             node = context.space_data.node_tree.nodes.active
+            while node and node.type == "GROUP": node = node.node_tree.nodes.active
             if node and node.type == 'TEX_IMAGE':
 
                 row = layout.row(align=True)
@@ -111,7 +107,6 @@ class RN_PT_NodeITPanel(Panel):
                     row = layout.row(align=True)
                     row.prop(mytool, "blend_val")
 
-
                 row = layout.row(align=True)
                 row.label(text="Extension:")
 
@@ -125,9 +120,9 @@ class RN_PT_NodeITPanel(Panel):
             else:
                 layout.label(text="(No Image Texture Selected)", icon='GHOST_DISABLED')
 
+# INTERPOLATIONS
 class RN_OT__NodeButtonLinear(Operator):
-
-    'Set Image Texture interpolation to Linear'
+    '''Set Image Texture interpolation to Linear'''
     bl_idname = 'node.button_linear'
     bl_label  = 'Linear'
 
@@ -142,8 +137,7 @@ class RN_OT__NodeButtonLinear(Operator):
         return {'FINISHED'}
 
 class RN_OT__NodeButtonClosest(Operator):
-
-    'Set Image Texture interpolation to Closest'
+    '''Set Image Texture interpolation to Closest'''
     bl_idname = 'node.button_closest'
     bl_label  = 'Closest'
 
@@ -158,8 +152,7 @@ class RN_OT__NodeButtonClosest(Operator):
         return {'FINISHED'}
 
 class RN_OT__NodeButtonCubic(Operator):
-
-    'Set Image Texture interpolation to Cubic'
+    '''Set Image Texture interpolation to Cubic'''
     bl_idname = 'node.button_cubic'
     bl_label  = 'Cubic'
 
@@ -174,8 +167,7 @@ class RN_OT__NodeButtonCubic(Operator):
         return {'FINISHED'}
 
 class RN_OT__NodeButtonSmart(Operator):
-
-    'Set Image Texture interpolation to Smart'
+    '''Set Image Texture interpolation to Smart'''
     bl_idname = 'node.button_smart'
     bl_label  = 'Smart'
 
@@ -189,11 +181,9 @@ class RN_OT__NodeButtonSmart(Operator):
                     print("Possible Error - One or more nodes are not Image Textures")
         return {'FINISHED'}
 
-
-
+# PROJECTIONS
 class RN_OT__NodeButtonFlat(Operator):
-
-    'Set Image Texture projection to Flat'
+    '''Set Image Texture projection to Flat'''
     bl_idname = 'node.button_flat'
     bl_label  = 'Flat'
 
@@ -208,8 +198,7 @@ class RN_OT__NodeButtonFlat(Operator):
         return {'FINISHED'}
 
 class RN_OT__NodeButtonBox(Operator):
-
-    'Set Image Texture projection to Box'
+    '''Set Image Texture projection to Box'''
     bl_idname = 'node.button_box'
     bl_label  = 'Box'
 
@@ -224,8 +213,7 @@ class RN_OT__NodeButtonBox(Operator):
         return {'FINISHED'}
 
 class RN_OT__NodeButtonSphere(Operator):
-
-    'Set Image Texture projection to Sphere'
+    '''Set Image Texture projection to Sphere'''
     bl_idname = 'node.button_sphere'
     bl_label  = 'Sphere'
 
@@ -240,8 +228,7 @@ class RN_OT__NodeButtonSphere(Operator):
         return {'FINISHED'}
 
 class RN_OT__NodeButtonTube(Operator):
-
-    'Set Image Texture projection to TTube'
+    '''Set Image Texture projection to TTube'''
     bl_idname = 'node.button_tube'
     bl_label  = 'Tube'
 
@@ -255,11 +242,9 @@ class RN_OT__NodeButtonTube(Operator):
                     print("Possible Error - One or more nodes are not Image Textures")
         return {'FINISHED'}
 
-
-
+# EXTENSIONS
 class RN_OT__NodeButtonRepeat(Operator):
-
-    'Set Image Texture extension to Repeat'
+    '''Set Image Texture extension to Repeat'''
     bl_idname = 'node.button_repeat'
     bl_label  = 'Repeat'
 
@@ -274,8 +259,7 @@ class RN_OT__NodeButtonRepeat(Operator):
         return {'FINISHED'}
 
 class RN_OT__NodeButtonExtend(Operator):
-
-    'Set Image Texture extension to Extend'
+    '''Set Image Texture extension to Extend'''
     bl_idname = 'node.button_extend'
     bl_label  = 'Extend'
 
@@ -290,8 +274,7 @@ class RN_OT__NodeButtonExtend(Operator):
         return {'FINISHED'}
 
 class RN_OT__NodeButtonClip(Operator):
-
-    'Set Image Texture extension to Clip'
+    '''Set Image Texture extension to Clip'''
     bl_idname = 'node.button_clip'
     bl_label  = 'Clip'
 
@@ -304,7 +287,6 @@ class RN_OT__NodeButtonClip(Operator):
                 else:
                     print("Possible Error - One or more nodes are not Image Textures")
         return {'FINISHED'}
-
 
 
 classes = [
@@ -326,12 +308,22 @@ classes = [
 def register():
     for c in classes:
         bpy.utils.register_class(c)
-        bpy.types.Scene.my_tool = bpy.props.PointerProperty(type = MyProperties)
+        bpy.types.Scene.blend_val_tool = bpy.props.PointerProperty(type = MyProperties)
 
 def unregister():
     for c in classes:
         bpy.utils.unregister_class(c)
-        del bpy.types.Scene.my_tool
+        del bpy.types.Scene.blend_val_tool
 
 if __name__ == "__main__":
     register()
+
+
+# To get all the image textures recursively in a node tree you can use :
+# image_texture_nodes = []
+# node_groups = [n for n in context.space_data.node_tree.nodes if n.type == "GROUP"]
+# while node_groups:
+#     node_group = node_groups.pop(0)
+#     node_groups.extend([n for n in node_group.node_tree.nodes if n.type == "GROUP"])
+#     image_texture_nodes.extend([n for n in node_group.node_tree.nodes if n.type == "TEX_IMAGE"])
+# print(image_texture_nodes)
