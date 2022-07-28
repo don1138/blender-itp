@@ -1,4 +1,4 @@
-**1.1.0** <!-- 7/28/22 -->
+**1.0.1** <!-- 7/28/22 -->
 + Bugfix: **Blend Value** variable name in conflict with other add-ons
   + Rename `my_tool` to `blend_val_tool`
 + Bugfix: Panel is Null when Image Textures are inside a Group

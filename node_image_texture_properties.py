@@ -19,7 +19,7 @@
 bl_info = {
     "name"       : "ITP (Image Texture Properties)",
     "author"     : "Don Schnitzius",
-    "version"    : (1, 1),
+    "version"    : (1, 0, 1),
     "blender"    : (2, 80, 0),
     "location"   : "Node Editor > Sidebar > Node",
     "description": "Set Properties for Selected Image Nodes",
@@ -61,7 +61,7 @@ def whenUpdate( self, context ):
                 node.projection_blend = self.blend_val
 
 
-class MyProperties(bpy.types.PropertyGroup):
+class BlendValProperty(bpy.types.PropertyGroup):
     blend_val : bpy.props.FloatProperty(name = "Blend:", min = 0, max = 1, update = whenUpdate)
 
 class RN_PT_NodeITPanel(Panel):
@@ -290,7 +290,7 @@ class RN_OT__NodeButtonClip(Operator):
 
 
 classes = [
-    MyProperties,
+    BlendValProperty,
     RN_PT_NodeITPanel,
     RN_OT__NodeButtonLinear,
     RN_OT__NodeButtonClosest,
@@ -308,12 +308,12 @@ classes = [
 def register():
     for c in classes:
         bpy.utils.register_class(c)
-        bpy.types.Scene.blend_val_tool = bpy.props.PointerProperty(type = MyProperties)
+        bpy.types.Scene.blend_val_tool = bpy.props.PointerProperty(type = BlendValProperty)
 
 def unregister():
     for c in classes:
         bpy.utils.unregister_class(c)
-        del bpy.types.Scene.blend_val_tool
+        # del bpy.types.Scene.blend_val_tool
 
 if __name__ == "__main__":
     register()
