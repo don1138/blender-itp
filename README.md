@@ -10,10 +10,13 @@ Download the latest ZIP from **Releases**, or `node_image_texture_properties.py`
 
 This addon creates a panel named **Image Texture Properties** under ``Shader Editor > Sidebar > Node``.
 
-## Issues
+Select one or more Image Textures and the panel looks like this:
 
-- If image nodes are inside of a group, the sidebar panel is blank.
-- As of Blender 3.2.1, the `BOX` projection `Blend Value` property does not show up in sidebar panel.
+![Blender ITP Active](https://github.com/don1138/blender-itp/blob/main/itp-panel.png)
+
+If no Image Texture is selected, the panel shows an empty state:
+
+![Blender ITP Null](https://github.com/don1138/blender-itp/blob/main/itp-panel-null.png)
 
 ## Backstory
 
