@@ -10,6 +10,11 @@ Download the latest ZIP from **Releases**, or `node_image_texture_properties.py`
 
 This addon creates a panel named **Image Texture Properties** under ``Shader Editor > Sidebar > Node``.
 
+## Issues
+
+- If image nodes are inside of a group, the sidebar panel is blank.
+- As of Blender 3.2.1, the `BOX` projection `Blend Value` property does not show up in sidebar panel.
+
 ## Backstory
 
 I was working on a PBR with six image textures, and had to change the `Projection` to `BOX` six times.
@@ -23,8 +28,8 @@ Because that's what heroes do.
 <br><br>
 
 <p align="center">
-  <img align="center" src="https://badges.pufler.dev/created/don1138/blender-itp?style=for-the-badge&colorA=222&colorB=48684b" alt="Repo Created">
-  <img align="center" src="https://badges.pufler.dev/updated/don1138/blender-itp?style=for-the-badge&colorA=222&colorB=48684b" alt="Repo Updated">
+  <img alt="GitHub latest commit" src="https://img.shields.io/github/last-commit/don1138/blender-itp">
+  <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/don1138/blender-itp">
+  <img alt="Github all releases" src="https://img.shields.io/github/downloads/don1138/blender-itp/total.svg"><br>
+  <img src="https://repobeats.axiom.co/api/embed/c0e3e1855d0f7003c53943d3efcfa0fc8f9d853f.svg" alt="Repobeats analytics image">
 </p>
-
-![Alt](https://repobeats.axiom.co/api/embed/c0e3e1855d0f7003c53943d3efcfa0fc8f9d853f.svg "Repobeats analytics image")
