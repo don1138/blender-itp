@@ -2,6 +2,8 @@
 
 **Set Image Texture Properties on Multiple Nodes**
 
+![Blender ITP](https://github.com/don1138/blender-itp/blob/main/imx/blender-itp.jpg)
+
 ## Installation
 
 Download the latest ZIP from **Releases**, or `node_image_texture_properties.py` from repository, and install addon.
