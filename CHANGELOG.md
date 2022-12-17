@@ -1,3 +1,10 @@
+**1.0.3** <!-- 12/17/22 -->
+  + Code refactoring
+  + PEP8 formatting
+
+**1.0.2** <!-- 11/18/22 -->
+  + Code refactoring
+
 **1.0.1** <!-- 7/28/22 -->
 + Bugfix: **Blend Value** variable name in conflict with other add-ons
   + Rename `my_tool` to `blend_val_tool`

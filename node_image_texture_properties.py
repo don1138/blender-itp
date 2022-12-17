@@ -20,12 +20,12 @@
 bl_info = {
     "name"       : "ITP (Image Texture Properties)",
     "author"     : "Don Schnitzius",
-    "version"    : (1, 0, 2),
+    "version"    : (1, 0, 3),
     "blender"    : (2, 80, 0),
     "location"   : "Node Editor > Sidebar > Node",
     "description": "Set Properties for Selected Image Nodes",
     "warning"    : "",
-    "wiki_url"   : "https://github.com/don1138/blender-itp",
+    "doc_url"    : "https://github.com/don1138/blender-itp",
     "support"    : "COMMUNITY",
     "category"   : "Node",
 }
@@ -38,10 +38,10 @@ from bpy.types import Operator, Panel
 not_image = "One or more nodes are not Image Textures"
 
 
-def ShowMessageBox(message = "", title = "", icon = 'INFO'):
+def ShowMessageBox(message="", title="", icon='INFO'):
     def draw(self, context):
         self.layout.label(text=message)
-    bpy.context.window_manager.popup_menu(draw, title = title, icon = icon)
+    bpy.context.window_manager.popup_menu(draw, title=title, icon=icon)
 
 
 def get_active_tree(context):
@@ -59,7 +59,7 @@ def get_nodes_links(context):
     return tree.nodes, tree.links
 
 
-def whenUpdate( self, context ):
+def whenUpdate(self, context):
     nodes, links = get_nodes_links(context)
     for node in nodes:
         if node.select == True and node.type == 'TEX_IMAGE':
@@ -67,51 +67,48 @@ def whenUpdate( self, context ):
 
 
 class BlendValProperty(bpy.types.PropertyGroup):
-    blend_val : bpy.props.FloatProperty(name = "Blend:", min = 0, max = 1, update = whenUpdate)
+    blend_val: bpy.props.FloatProperty(
+        name="Blend:", min=0, max=1, update=whenUpdate)
 
 
 class RN_PT_NodeITPanel(Panel):
-    bl_space_type  = "NODE_EDITOR"
+    bl_space_type = "NODE_EDITOR"
     bl_region_type = "UI"
-    bl_category    = "Node"
-    bl_label       = "Image Texture Properties"
+    bl_category = "Node"
+    bl_label = "Image Texture Properties"
 
     def draw(self, context):
         if context.active_node is None:
             return
         layout = self.layout
         scene = context.scene
-        mytool = scene.blend_val_tool
         row = layout.row()
         node = context.space_data.node_tree.nodes.active
         while node and node.type == "GROUP":
-          node = node.node_tree.nodes.active
+            node = node.node_tree.nodes.active
         if node and node.type == 'TEX_IMAGE':
 
             row = layout.row(align=True)
             row.label(text="Interpolation:")
 
-            row = layout.row(align=True)
-            row.operator('node.button_linear')
-            row.operator('node.button_closest')
-
-            row = layout.row(align=True)
-            row.operator('node.button_cubic')
-            row.operator('node.button_smart')
-
+            row = self.draw_button(
+                layout, 'node.button_linear', 'node.button_closest'
+            )
+            row = self.draw_button(
+                layout, 'node.button_cubic', 'node.button_smart'
+            )
             row = layout.row(align=True)
             row.label(text="Projection:")
 
-            row = layout.row(align=True)
-            row.operator('node.button_flat')
-            row.operator('node.button_box')
-
-            row = layout.row(align=True)
-            row.operator('node.button_sphere')
-            row.operator('node.button_tube')
-
+            row = self.draw_button(
+                layout, 'node.button_flat', 'node.button_box'
+            )
+            row = self.draw_button(
+                layout, 'node.button_sphere', 'node.button_tube'
+            )
             if node.projection == 'BOX':
                 row = layout.row(align=True)
+                mytool = scene.blend_val_tool
                 row.prop(mytool, "blend_val")
 
             row = layout.row(align=True)
@@ -120,19 +117,26 @@ class RN_PT_NodeITPanel(Panel):
             row = layout.row(align=True)
             row.operator('node.button_repeat')
 
-            row = layout.row(align=True)
-            row.operator('node.button_extend')
-            row.operator('node.button_clip')
-
+            row = self.draw_button(
+                layout, 'node.button_extend', 'node.button_clip'
+            )
         else:
-            layout.label(text="(No Image Texture Selected)", icon='GHOST_DISABLED')
+            layout.label(text="(No Image Texture Selected)",
+                         icon='GHOST_DISABLED')
+
+    def draw_button(self, layout, arg1, arg2):
+        result = layout.row(align=True)
+        result.operator(arg1)
+        result.operator(arg2)
+
+        return result
 
 
 # INTERPOLATIONS
 class RN_OT__NodeButtonLinear(Operator):
     '''Set Image Texture interpolation to Linear'''
     bl_idname = 'node.button_linear'
-    bl_label  = 'Linear'
+    bl_label = 'Linear'
 
     def execute(self, context):
         nodes, links = get_nodes_links(context)
@@ -148,7 +152,7 @@ class RN_OT__NodeButtonLinear(Operator):
 class RN_OT__NodeButtonClosest(Operator):
     '''Set Image Texture interpolation to Closest'''
     bl_idname = 'node.button_closest'
-    bl_label  = 'Closest'
+    bl_label = 'Closest'
 
     def execute(self, context):
         nodes, links = get_nodes_links(context)
@@ -164,7 +168,7 @@ class RN_OT__NodeButtonClosest(Operator):
 class RN_OT__NodeButtonCubic(Operator):
     '''Set Image Texture interpolation to Cubic'''
     bl_idname = 'node.button_cubic'
-    bl_label  = 'Cubic'
+    bl_label = 'Cubic'
 
     def execute(self, context):
         nodes, links = get_nodes_links(context)
@@ -180,7 +184,7 @@ class RN_OT__NodeButtonCubic(Operator):
 class RN_OT__NodeButtonSmart(Operator):
     '''Set Image Texture interpolation to Smart'''
     bl_idname = 'node.button_smart'
-    bl_label  = 'Smart'
+    bl_label = 'Smart'
 
     def execute(self, context):
         nodes, links = get_nodes_links(context)
@@ -197,7 +201,7 @@ class RN_OT__NodeButtonSmart(Operator):
 class RN_OT__NodeButtonFlat(Operator):
     '''Set Image Texture projection to Flat'''
     bl_idname = 'node.button_flat'
-    bl_label  = 'Flat'
+    bl_label = 'Flat'
 
     def execute(self, context):
         nodes, links = get_nodes_links(context)
@@ -213,7 +217,7 @@ class RN_OT__NodeButtonFlat(Operator):
 class RN_OT__NodeButtonBox(Operator):
     '''Set Image Texture projection to Box'''
     bl_idname = 'node.button_box'
-    bl_label  = 'Box'
+    bl_label = 'Box'
 
     def execute(self, context):
         nodes, links = get_nodes_links(context)
@@ -229,7 +233,7 @@ class RN_OT__NodeButtonBox(Operator):
 class RN_OT__NodeButtonSphere(Operator):
     '''Set Image Texture projection to Sphere'''
     bl_idname = 'node.button_sphere'
-    bl_label  = 'Sphere'
+    bl_label = 'Sphere'
 
     def execute(self, context):
         nodes, links = get_nodes_links(context)
@@ -245,7 +249,7 @@ class RN_OT__NodeButtonSphere(Operator):
 class RN_OT__NodeButtonTube(Operator):
     '''Set Image Texture projection to TTube'''
     bl_idname = 'node.button_tube'
-    bl_label  = 'Tube'
+    bl_label = 'Tube'
 
     def execute(self, context):
         nodes, links = get_nodes_links(context)
@@ -262,7 +266,7 @@ class RN_OT__NodeButtonTube(Operator):
 class RN_OT__NodeButtonRepeat(Operator):
     '''Set Image Texture extension to Repeat'''
     bl_idname = 'node.button_repeat'
-    bl_label  = 'Repeat'
+    bl_label = 'Repeat'
 
     def execute(self, context):
         nodes, links = get_nodes_links(context)
@@ -278,7 +282,7 @@ class RN_OT__NodeButtonRepeat(Operator):
 class RN_OT__NodeButtonExtend(Operator):
     '''Set Image Texture extension to Extend'''
     bl_idname = 'node.button_extend'
-    bl_label  = 'Extend'
+    bl_label = 'Extend'
 
     def execute(self, context):
         nodes, links = get_nodes_links(context)
@@ -294,7 +298,7 @@ class RN_OT__NodeButtonExtend(Operator):
 class RN_OT__NodeButtonClip(Operator):
     '''Set Image Texture extension to Clip'''
     bl_idname = 'node.button_clip'
-    bl_label  = 'Clip'
+    bl_label = 'Clip'
 
     def execute(self, context):
         nodes, links = get_nodes_links(context)
@@ -327,7 +331,8 @@ classes = [
 def register():
     for c in classes:
         bpy.utils.register_class(c)
-        bpy.types.Scene.blend_val_tool = bpy.props.PointerProperty(type = BlendValProperty)
+        bpy.types.Scene.blend_val_tool = bpy.props.PointerProperty(
+            type=BlendValProperty)
 
 
 def unregister():
