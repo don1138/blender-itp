@@ -1,3 +1,6 @@
+**1.0.4** <!-- 02/22/24 -->
+  + Bugfix: Blank panel when seleceted Nodes are inside Groups
+
 **1.0.3** <!-- 12/17/22 -->
   + Code refactoring
   + PEP8 formatting

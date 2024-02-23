@@ -20,7 +20,7 @@
 bl_info = {
     "name"       : "ITP (Image Texture Properties)",
     "author"     : "Don Schnitzius",
-    "version"    : (1, 0, 3),
+    "version"    : (1, 0, 4),
     "blender"    : (2, 80, 0),
     "location"   : "Node Editor > Sidebar > Node",
     "description": "Set Properties for Selected Image Nodes",
@@ -331,14 +331,15 @@ classes = [
 def register():
     for c in classes:
         bpy.utils.register_class(c)
-        bpy.types.Scene.blend_val_tool = bpy.props.PointerProperty(
-            type=BlendValProperty)
+
+    bpy.types.Scene.blend_val_tool = bpy.props.PointerProperty(type=BlendValProperty)
 
 
 def unregister():
     for c in classes:
         bpy.utils.unregister_class(c)
-        # del bpy.types.Scene.blend_val_tool
+
+    del bpy.types.Scene.blend_val_tool
 
 
 if __name__ == "__main__":
