@@ -32,7 +32,7 @@ The existing `Properties` panel will set things like `Color Mode` for all select
 
 Deciding that such tyranny will not stand on my watch, I made a quick extension that sets the outstanding properties of all selected `Image Textures` with one click.
 
-Because that's what heroes do. *(Instead of simply holding the Control key to copy changes across all selected nodes. 🙄)*
+Because that's what heroes do. ( *Instead of simply holding the Control key to copy changes across all selected nodes.* 🙄 )
 
 <br><br>
 
