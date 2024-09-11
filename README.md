@@ -26,7 +26,7 @@ If no Image Texture is selected, the panel shows an empty state:
 
 ## Backstory
 
-I was working on a PBR with six image textures, and had to change the `Projection` to `BOX` six times. *(Because it had slipped my mind that I could simply hold the Control key to copy changes across all selected nodes. 🤔)*
+I was working on a PBR with six image textures, and had to change the `Projection` to `BOX` six times. ( *Because it had slipped my mind that I could simply hold the Control key to copy changes across all selected nodes.* 🤔 )
 
 The existing `Properties` panel will set things like `Color Mode` for all selected images, but doesn't include the full set of properties listed on the node itself.
 
